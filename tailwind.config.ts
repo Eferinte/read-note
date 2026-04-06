@@ -7,7 +7,7 @@ export default {
       colors: {
         brand: {
           deep: "#112A46",
-          accent: "#F97316",
+          accent: "#FFbbff",
           soft: "#ECF3FF",
         },
       },

@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PianoKeyboard from "./components/PianoKeyboard";
 import StaffSnippet from "./components/StaffSnippet";
 import { createSnippet, SNIPPET_LENGTH, type PracticeNote } from "./lib/music";
+import { createPianoAudioEngine, type PianoAudioEngine } from "./lib/pianoAudio";
 
 function badgeClassName(type: "correct" | "wrong" | null): string {
   if (type === "correct") {
@@ -26,9 +27,19 @@ export default function App() {
   const [lastPressedMidi, setLastPressedMidi] = useState<number | null>(null);
   const [feedback, setFeedback] = useState<"correct" | "wrong" | null>(null);
   const [showHint, setShowHint] = useState(false);
+  const pianoAudioRef = useRef<PianoAudioEngine | null>(null);
 
   const accuracy = attempts === 0 ? 0 : Math.round((correctCount / attempts) * 100);
   const currentNote = snippet[activeIndex];
+
+  useEffect(() => {
+    pianoAudioRef.current = createPianoAudioEngine();
+
+    return () => {
+      pianoAudioRef.current?.dispose();
+      pianoAudioRef.current = null;
+    };
+  }, []);
 
   useEffect(() => {
     if (!feedback) {
@@ -58,6 +69,7 @@ export default function App() {
   };
 
   const handleKeyPress = (midi: number) => {
+    pianoAudioRef.current?.playNote(midi);
     setLastPressedMidi(midi);
     setAttempts((value) => value + 1);
 

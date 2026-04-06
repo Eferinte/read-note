@@ -58,7 +58,7 @@ export default function StaffSnippet({ notes, activeIndex }: StaffSnippetProps) 
         });
 
         if (index === activeIndex) {
-          staveNote.setStyle({ fillStyle: "#F97316", strokeStyle: "#F97316" });
+          staveNote.setStyle({ fillStyle: "#FFbbff", strokeStyle: "#FFbbff" });
         }
 
         return staveNote;
