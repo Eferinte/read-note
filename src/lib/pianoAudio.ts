@@ -40,7 +40,7 @@ export function createPianoAudioEngine(): PianoAudioEngine {
 
     context = new AudioContextConstructor();
     masterGain = context.createGain();
-    masterGain.gain.value = 0.18;
+    masterGain.gain.value = 1;
     masterGain.connect(context.destination);
     return context;
   };
@@ -96,10 +96,10 @@ export function createPianoAudioEngine(): PianoAudioEngine {
         ratio: number;
         type: OscillatorType;
       }> = [
-        { detune: 0, gain: 0.9, ratio: 1, type: "triangle" },
-        { detune: -5, gain: 0.32, ratio: 2, type: "sine" },
-        { detune: 4, gain: 0.18, ratio: 3, type: "sine" },
-      ];
+          { detune: 0, gain: 0.9, ratio: 1, type: "triangle" },
+          { detune: -5, gain: 0.32, ratio: 2, type: "sine" },
+          { detune: 4, gain: 0.18, ratio: 3, type: "sine" },
+        ];
 
       partials.forEach((partial) => {
         const oscillator = audioContext.createOscillator();
