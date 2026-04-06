@@ -14,3 +14,11 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Deploy
+
+```bash
+npm run deploy
+```
+
+This command builds the app and force-pushes `dist` to the `gh-pages` branch.

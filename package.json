@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && node scripts/deploy-pages.mjs"
   },
   "description": "识五线谱练习工具",
   "devDependencies": {
